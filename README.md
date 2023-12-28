@@ -7,7 +7,6 @@
 
 2. Acessar rota
 
- ```
- http://localhost:8080/
- ```
+ [CLIQUE AQUI](http://localhost:8080/)
+ 
 
