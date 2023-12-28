@@ -1,0 +1,15 @@
+{
+	"name": "desafio-nginx-node",
+	"version": "1.0.0",
+	"description": "Desafio Docker nginx + node",
+	"main": "index.js",
+	"scripts": {
+		"start": "node --watch src/server.js"
+	},
+	"author": "guipalm4",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.18.2",
+		"mysql": "^2.18.1"
+	}
+}

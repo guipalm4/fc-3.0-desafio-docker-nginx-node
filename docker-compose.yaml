@@ -1,0 +1,43 @@
+version: "3.5"
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    ports:
+      - "8080:80"
+    networks:
+      - app-node-network
+    depends_on:
+      - app
+      - database
+
+  app:
+    container_name: desafio_docker_app
+    build:
+      context: ./node
+    entrypoint: wait-for database:3306 -t 40 -- ./start.sh
+    volumes:
+      - ./node:/home/node/app
+    networks:
+      - app-node-network
+    depends_on:
+      - database
+
+  database:
+    image: mysql:5.7
+    container_name: mysql_node
+    platform: linux/x86_64
+    restart: always
+    tty: true
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=nodedb
+    networks:
+      - app-node-network
+
+networks:
+  app-node-network:
+    driver: bridge
